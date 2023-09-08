@@ -99,7 +99,7 @@ void InfomediaUploader::upload()
     QHttpPart filePart;
     filePart.setHeader(
       QNetworkRequest::ContentDispositionHeader,
-      QVariant("form-data; name=\"fileToUpload\"; filename=\"upload.png\""));
+      QVariant("form-data; name=\"file\"; filename=\"upload.png\""));
     filePart.setBody(byteArray);
     http->append(filePart);
 
@@ -148,7 +148,7 @@ void InfomediaUploader::deleteImage(const QString& fileName,
 
     QHttpPart filePart;
     filePart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                       QVariant("form-data; name=\"files\";"));
+                       QVariant("form-data; name=\"file\";"));
     filePart.setBody(fileName.toUtf8());
     filePart.setHeader(QNetworkRequest::ContentTypeHeader,
                        QVariant("text/plain"));
