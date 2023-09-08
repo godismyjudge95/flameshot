@@ -14,7 +14,7 @@
 #include <QMap>
 #include <QSharedPointer>
 #include <QStandardPaths>
-#include <QUUid>
+#include <QUuid>
 #include <QVector>
 #include <algorithm>
 #include <stdexcept>
@@ -125,7 +125,7 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("copyOnDoubleClick"            ,Bool               ( false         )),
     OPTION("imgUploaderPlugin"            ,String             ( "infomedia"       )),
     OPTION("uploadClientSecret"           ,String             ( "313baf0c7b4d3ff")),
-    OPTION("infomediaUserHash"            ,String             ( QUUid::createUuid().toString())),
+    OPTION("infomediaUserHash"            ,String             ( QUuid::createUuid().toString())),
     OPTION("infomediaApiToken"            ,String             ( "")),
     OPTION("showSelectionGeometry"        ,BoundedInt         ( 0, 5, 4       )),
     OPTION("showSelectionGeometryHideTime",LowerBoundedInt    ( 0, 3000       ))
