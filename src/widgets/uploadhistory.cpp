@@ -74,8 +74,8 @@ void UploadHistory::addLine(const QString& path, const QString& fileName)
 
     QString url = ImgUploaderManager(this).url();
 
-    if (unpackedFileName.type == "infomedia") {
-        url = url + unpackedFileName.token + "/";
+    if (unpackFileName.type == "infomedia") {
+        url = url + unpackFileName.token + "/";
     }
 
     url = url + unpackFileName.file;
