@@ -5,8 +5,8 @@
 #include "imguploadermanager.h"
 #include "confighandler.h"
 #include "generalconf.h"
-#include "storages/infomedia/infomediauploader.h"
 #include "storages/imgur/imguruploader.h"
+#include "storages/infomedia/infomediauploader.h"
 #include <QPixmap>
 #include <QWidget>
 #include <cstdio>

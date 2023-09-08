@@ -16,7 +16,8 @@ class InfomediaUploader : public ImgUploaderBase
 {
     Q_OBJECT
 public:
-    explicit InfomediaUploader(const QPixmap& capture, QWidget* parent = nullptr);
+    explicit InfomediaUploader(const QPixmap& capture,
+                               QWidget* parent = nullptr);
     void deleteImage(const QString& fileName, const QString& deleteToken);
 
 private slots:
