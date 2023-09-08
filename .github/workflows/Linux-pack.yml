@@ -80,7 +80,7 @@ jobs:
               symbol: jammy,
               arch: amd64
             }
- 
+
     steps:
       - name: Enable Docker Experimental Features
         run: |
@@ -88,9 +88,9 @@ jobs:
           mkdir -p ~/.docker
           echo $'{\n  "experimental": "enabled"\n}' | sudo tee ~/.docker/config.json
           sudo service docker restart
-          docker version -f '{{.Client.Experimental}}'
-          docker version -f '{{.Server.Experimental}}'
+          docker version -f "{{ (index .Server.Components 0).Details.Experimental }}"
           docker buildx version
+
       - name: Support for ARM via QEMU's user-mode emulation
         # Register binfmt_misc entry for qemu-user-static
         # https://github.com/multiarch/qemu-user-static
@@ -557,7 +557,7 @@ jobs:
       - name: Packaging snap
         uses: snapcore/action-build@v1
         id: snapcraft
-        with: 
+        with:
           snapcraft-args: --enable-experimental-extensions
       - name: Rename snap name
         shell: bash
