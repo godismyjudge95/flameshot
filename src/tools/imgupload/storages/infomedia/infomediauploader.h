@@ -6,7 +6,7 @@
 #include "src/tools/imgupload/storages/imguploaderbase.h"
 #include <QUrl>
 #include <QWidget>
-#define INFOMEDIA_API_URL "https://images.infomedia.dev/api.php"
+#define INFOMEDIA_API_URL "https://screenshot.infomedia.com/api.php"
 
 class QNetworkReply;
 class QNetworkAccessManager;

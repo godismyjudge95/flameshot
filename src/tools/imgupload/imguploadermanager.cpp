@@ -24,7 +24,7 @@ ImgUploaderManager::ImgUploaderManager(QObject* parent)
 void ImgUploaderManager::init()
 {
     if (uploaderPlugin().compare("infomedia") == 0) {
-        m_urlString = "https://images.infomedia.dev/";
+        m_urlString = "https://screenshot.infomedia.com/";
         m_imgUploaderPlugin = "infomedia";
     } else {
         m_urlString = "https://imgur.com/";
