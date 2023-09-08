@@ -63,6 +63,7 @@ GeneralConf::GeneralConf(QWidget* parent)
     initImgUploaderPlugin();
     initUploadClientSecret();
     initInfomediaUserHash();
+    initInfomediaApiToken();
     initPredefinedColorPaletteLarge();
     initShowSelectionGeometry();
 
@@ -635,7 +636,7 @@ void GeneralConf::initInfomediaApiToken()
     QString foreground = this->palette().windowText().color().name();
     m_infomediaApiToken->setStyleSheet(
       QStringLiteral("color: %1").arg(foreground));
-    m_infomediaUserHash->setText(ConfigHandler().infomediaApiToken());
+    m_infomediaApiToken->setText(ConfigHandler().infomediaApiToken());
     connect(m_infomediaApiToken,
             &QLineEdit::editingFinished,
             this,
