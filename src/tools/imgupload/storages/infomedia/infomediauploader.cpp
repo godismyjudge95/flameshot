@@ -130,14 +130,6 @@ void InfomediaUploader::deleteImage(const QString& fileName,
     reqTypePart.setBody("deletefiles");
     http->append(reqTypePart);
 
-    QHttpPart secretPart;
-    secretPart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                         QVariant("form-data; name=\"secret\""));
-    secretPart.setHeader(QNetworkRequest::ContentTypeHeader,
-                         QVariant("text/plain"));
-    userPart.setBody(ConfigHandler().infomediaApiToken().toUtf8());
-    http->append(secretPart);
-
     QHttpPart userPart;
     userPart.setHeader(QNetworkRequest::ContentDispositionHeader,
                        QVariant("form-data; name=\"userhash\""));
@@ -145,6 +137,14 @@ void InfomediaUploader::deleteImage(const QString& fileName,
                        QVariant("text/plain"));
     userPart.setBody(deleteToken.toUtf8());
     http->append(userPart);
+
+    QHttpPart secretPart;
+    secretPart.setHeader(QNetworkRequest::ContentDispositionHeader,
+                         QVariant("form-data; name=\"secret\""));
+    secretPart.setHeader(QNetworkRequest::ContentTypeHeader,
+                         QVariant("text/plain"));
+    secretPart.setBody(ConfigHandler().infomediaApiToken().toUtf8());
+    http->append(secretPart);
 
     QHttpPart filePart;
     filePart.setHeader(QNetworkRequest::ContentDispositionHeader,
