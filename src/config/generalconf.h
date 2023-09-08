@@ -44,6 +44,7 @@ private slots:
     void autoCloseIdleDaemonChanged(bool checked);
     void autostartChanged(bool checked);
     void infomediaUserHashEdited();
+    void infomediaApiTokenEdited();
     void historyConfirmationToDelete(bool checked);
     void uploadHistoryMaxChanged(int max);
     void undoLimit(int limit);
@@ -71,6 +72,7 @@ private:
     void initCheckForUpdates();
 #endif
     void initInfomediaUserHash();
+    void initInfomediaApiToken();
     void initConfigButtons();
     void initCopyAndCloseAfterUpload();
     void initCopyOnDoubleClick();
@@ -112,6 +114,7 @@ private:
     QCheckBox* m_autoCloseIdleDaemon;
     QCheckBox* m_autostart;
     QLineEdit* m_infomediaUserHash;
+    QLineEdit* m_infomediaApiToken;
     QCheckBox* m_showStartupLaunchMessage;
     QCheckBox* m_copyURLAfterUpload;
     QCheckBox* m_copyPathAfterSave;

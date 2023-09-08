@@ -124,7 +124,8 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("copyOnDoubleClick"            ,Bool               ( false         )),
     OPTION("imgUploaderPlugin"            ,String             ( "imgur"       )),
     OPTION("uploadClientSecret"           ,String             ( "313baf0c7b4d3ff")),
-    OPTION("infomediaUserHash"               ,String             ( "4d037318987e89b9c2a00f409")),
+    OPTION("infomediaUserHash"            ,String             ( "4d037318987e89b9c2a00f409")),
+    OPTION("infomediaApiToken"            ,String             ( "")),
     OPTION("showSelectionGeometry"        ,BoundedInt         ( 0, 5, 4       )),
     OPTION("showSelectionGeometryHideTime",LowerBoundedInt    ( 0, 3000       ))
 };
