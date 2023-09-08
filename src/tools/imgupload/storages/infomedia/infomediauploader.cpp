@@ -93,7 +93,7 @@ void InfomediaUploader::upload()
                        QVariant("form-data; name=\"secret\""));
     secretPart.setHeader(QNetworkRequest::ContentTypeHeader,
                        QVariant("text/plain"));
-    secretPart.setBody(QStringLiteral(INFOMEDIA_API_SECRET));
+    userPart.setBody(ConfigHandler().infomediaApiToken().toUtf8());
     http->append(secretPart);
 
     QHttpPart filePart;

@@ -7,7 +7,6 @@
 #include <QUrl>
 #include <QWidget>
 #define INFOMEDIA_API_URL "https://images.infomedia.dev/api.php"
-#define INFOMEDIA_API_SECRET = "eef6e986-5df0-400b-96a4-d0cc82d016f7"
 
 class QNetworkReply;
 class QNetworkAccessManager;

@@ -622,6 +622,27 @@ void GeneralConf::initInfomediaUserHash()
     vboxLayout->addWidget(m_infomediaUserHash);
 }
 
+void GeneralConf::initInfomediaApiToken()
+{
+    auto* box = new QGroupBox(tr("Infomedia API Token"));
+    box->setFlat(true);
+    m_layout->addWidget(box);
+
+    auto* vboxLayout = new QVBoxLayout();
+    box->setLayout(vboxLayout);
+
+    m_infomediaApiToken = new QLineEdit(this);
+    QString foreground = this->palette().windowText().color().name();
+    m_infomediaApiToken->setStyleSheet(
+      QStringLiteral("color: %1").arg(foreground));
+    m_infomediaUserHash->setText(ConfigHandler().infomediaApiToken());
+    connect(m_infomediaApiToken,
+            &QLineEdit::editingFinished,
+            this,
+            &GeneralConf::infomediaApiTokenEdited);
+    vboxLayout->addWidget(m_infomediaApiToken);
+}
+
 void GeneralConf::uploadClientKeyEdited()
 {
     ConfigHandler().setUploadClientSecret(m_uploadClientKey->text());
@@ -630,6 +651,11 @@ void GeneralConf::uploadClientKeyEdited()
 void GeneralConf::infomediaUserHashEdited()
 {
     ConfigHandler().setInfomediaUserHash(m_infomediaUserHash->text());
+}
+
+void GeneralConf::infomediaApiTokenEdited()
+{
+    ConfigHandler().setInfomediaApiToken(m_infomediaApiToken->text());
 }
 
 void GeneralConf::uploadHistoryMaxChanged(int max)

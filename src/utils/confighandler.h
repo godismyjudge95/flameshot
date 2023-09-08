@@ -125,6 +125,7 @@ public:
     CONFIG_GETTER_SETTER(copyOnDoubleClick, setCopyOnDoubleClick, bool)
     CONFIG_GETTER_SETTER(imgUploaderPlugin, setImgUploaderPlugin, QString)
     CONFIG_GETTER_SETTER(infomediaUserHash, setInfomediaUserHash, QString)
+    CONFIG_GETTER_SETTER(infomediaApiToken, setInfomediaApiToken, QString)
     CONFIG_GETTER_SETTER(uploadClientSecret, setUploadClientSecret, QString)
     CONFIG_GETTER_SETTER(saveLastRegion, setSaveLastRegion, bool)
     CONFIG_GETTER_SETTER(showSelectionGeometry, setShowSelectionGeometry, int)
