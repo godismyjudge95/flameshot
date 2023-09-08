@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // SPDX-FileCopyrightText: 2017-2019 Alejandro Sirgo Rica & Contributors
 
-#include "catboxuploader.h"
+#include "infomediauploader.h"
 #include "src/utils/confighandler.h"
 #include "src/utils/filenamehandler.h"
 #include "src/utils/history.h"
@@ -23,17 +23,17 @@
 #include <qurlquery.h>
 #include <qvariant.h>
 
-CatboxUploader::CatboxUploader(const QPixmap& capture, QWidget* parent)
+InfomediaUploader::InfomediaUploader(const QPixmap& capture, QWidget* parent)
   : ImgUploaderBase(capture, parent)
 {
     m_NetworkAM = new QNetworkAccessManager(this);
     connect(m_NetworkAM,
             &QNetworkAccessManager::finished,
             this,
-            &CatboxUploader::handleReply);
+            &InfomediaUploader::handleReply);
 }
 
-void CatboxUploader::handleReply(QNetworkReply* reply)
+void InfomediaUploader::handleReply(QNetworkReply* reply)
 {
     spinner()->deleteLater();
     m_currentImageName.clear();
@@ -52,7 +52,7 @@ void CatboxUploader::handleReply(QNetworkReply* reply)
         // save image to history
         History history;
         m_currentImageName = history.packFileName(
-          "catbox", ConfigHandler().catboxUserHash(), m_currentImageName);
+          "infomedia", ConfigHandler().infomediaUserHash(), m_currentImageName);
         history.save(pixmap(), m_currentImageName);
 
         emit uploadOk(imageURL());
@@ -63,13 +63,13 @@ void CatboxUploader::handleReply(QNetworkReply* reply)
     new QShortcut(Qt::Key_Escape, this, SLOT(close()));
 }
 
-void CatboxUploader::upload()
+void InfomediaUploader::upload()
 {
     QByteArray byteArray;
     QBuffer buffer(&byteArray);
     pixmap().save(&buffer, "PNG");
 
-    QUrl url(QStringLiteral(CATBOX_API_URL));
+    QUrl url(QStringLiteral(INFOMEDIA_API_URL));
     QHttpMultiPart* http = new QHttpMultiPart(QHttpMultiPart::FormDataType);
 
     QHttpPart reqTypePart;
@@ -85,7 +85,7 @@ void CatboxUploader::upload()
                        QVariant("form-data; name=\"userhash\""));
     userPart.setHeader(QNetworkRequest::ContentTypeHeader,
                        QVariant("text/plain"));
-    userPart.setBody(ConfigHandler().catboxUserHash().toUtf8());
+    userPart.setBody(ConfigHandler().infomediaUserHash().toUtf8());
     http->append(userPart);
 
     QHttpPart filePart;
@@ -98,20 +98,20 @@ void CatboxUploader::upload()
     QNetworkRequest request(url);
     request.setRawHeader("Cookie",
                          QStringLiteral("PHPSESSID %1")
-                           .arg(ConfigHandler().catboxUserHash())
+                           .arg(ConfigHandler().infomediaUserHash())
                            .toUtf8());
 
     QNetworkReply* reply = m_NetworkAM->post(request, http);
     http->setParent(reply);
 }
 
-void CatboxUploader::deleteImage(const QString& fileName,
+void InfomediaUploader::deleteImage(const QString& fileName,
                                  const QString& deleteToken)
 {
     Q_UNUSED(fileName)
     m_NetworkAM = new QNetworkAccessManager(this);
 
-    QUrl url(QStringLiteral(CATBOX_API_URL));
+    QUrl url(QStringLiteral(INFOMEDIA_API_URL));
     QHttpMultiPart* http = new QHttpMultiPart(QHttpMultiPart::FormDataType);
 
     QHttpPart reqTypePart;
@@ -141,7 +141,7 @@ void CatboxUploader::deleteImage(const QString& fileName,
     QNetworkRequest request(url);
     request.setRawHeader("Cookie",
                          QStringLiteral("PHPSESSID %1")
-                           .arg(ConfigHandler().catboxUserHash())
+                           .arg(ConfigHandler().infomediaUserHash())
                            .toUtf8());
 
     QNetworkReply* reply = m_NetworkAM->post(request, http);

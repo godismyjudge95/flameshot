@@ -5,7 +5,7 @@
 #include "imguploadermanager.h"
 #include "confighandler.h"
 #include "generalconf.h"
-#include "storages/catbox/catboxuploader.h"
+#include "storages/infomedia/infomediauploader.h"
 #include "storages/imgur/imguruploader.h"
 #include <QPixmap>
 #include <QWidget>
@@ -23,9 +23,9 @@ ImgUploaderManager::ImgUploaderManager(QObject* parent)
 
 void ImgUploaderManager::init()
 {
-    if (uploaderPlugin().compare("catbox") == 0) {
-        m_urlString = "https://files.catbox.moe/";
-        m_imgUploaderPlugin = "catbox";
+    if (uploaderPlugin().compare("infomedia") == 0) {
+        m_urlString = "https://images.infomedia.dev/";
+        m_imgUploaderPlugin = "infomedia";
     } else {
         m_urlString = "https://imgur.com/";
         m_imgUploaderPlugin = "imgur";
@@ -35,9 +35,9 @@ void ImgUploaderManager::init()
 ImgUploaderBase* ImgUploaderManager::uploader(const QPixmap& capture,
                                               QWidget* parent)
 {
-    if (uploaderPlugin().compare("catbox") == 0) {
+    if (uploaderPlugin().compare("infomedia") == 0) {
         m_imgUploaderBase =
-          (ImgUploaderBase*)(new CatboxUploader(capture, parent));
+          (ImgUploaderBase*)(new InfomediaUploader(capture, parent));
     } else {
         m_imgUploaderBase =
           (ImgUploaderBase*)(new ImgurUploader(capture, parent));

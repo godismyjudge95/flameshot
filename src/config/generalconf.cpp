@@ -62,7 +62,7 @@ GeneralConf::GeneralConf(QWidget* parent)
     initUndoLimit();
     initImgUploaderPlugin();
     initUploadClientSecret();
-    initCatboxUserHash();
+    initInfomediaUserHash();
     initPredefinedColorPaletteLarge();
     initShowSelectionGeometry();
 
@@ -468,7 +468,7 @@ void GeneralConf::initImgUploaderPlugin()
 
     QStringList storageList;
     storageList.append("imgur");
-    storageList.append("catbox");
+    storageList.append("infomedia");
     m_imgUploaderPlugin->addItems(storageList);
 
     int currentIndex =
@@ -601,25 +601,25 @@ void GeneralConf::initUploadClientSecret()
     vboxLayout->addWidget(m_uploadClientKey);
 }
 
-void GeneralConf::initCatboxUserHash()
+void GeneralConf::initInfomediaUserHash()
 {
-    auto* box = new QGroupBox(tr("Catbox User Hash"));
+    auto* box = new QGroupBox(tr("Infomedia User Hash"));
     box->setFlat(true);
     m_layout->addWidget(box);
 
     auto* vboxLayout = new QVBoxLayout();
     box->setLayout(vboxLayout);
 
-    m_catboxUserHash = new QLineEdit(this);
+    m_infomediaUserHash = new QLineEdit(this);
     QString foreground = this->palette().windowText().color().name();
-    m_catboxUserHash->setStyleSheet(
+    m_infomediaUserHash->setStyleSheet(
       QStringLiteral("color: %1").arg(foreground));
-    m_catboxUserHash->setText(ConfigHandler().catboxUserHash());
-    connect(m_catboxUserHash,
+    m_infomediaUserHash->setText(ConfigHandler().infomediaUserHash());
+    connect(m_infomediaUserHash,
             &QLineEdit::editingFinished,
             this,
-            &GeneralConf::catboxUserHashEdited);
-    vboxLayout->addWidget(m_catboxUserHash);
+            &GeneralConf::infomediaUserHashEdited);
+    vboxLayout->addWidget(m_infomediaUserHash);
 }
 
 void GeneralConf::uploadClientKeyEdited()
@@ -627,9 +627,9 @@ void GeneralConf::uploadClientKeyEdited()
     ConfigHandler().setUploadClientSecret(m_uploadClientKey->text());
 }
 
-void GeneralConf::catboxUserHashEdited()
+void GeneralConf::infomediaUserHashEdited()
 {
-    ConfigHandler().setCatboxUserHash(m_catboxUserHash->text());
+    ConfigHandler().setInfomediaUserHash(m_infomediaUserHash->text());
 }
 
 void GeneralConf::uploadHistoryMaxChanged(int max)

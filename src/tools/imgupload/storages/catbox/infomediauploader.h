@@ -6,17 +6,17 @@
 #include "src/tools/imgupload/storages/imguploaderbase.h"
 #include <QUrl>
 #include <QWidget>
-#define CATBOX_API_URL "https://catbox.moe/user/api.php"
+#define INFOMEDIA_API_URL "https://images.infomedia.dev/api.php"
 
 class QNetworkReply;
 class QNetworkAccessManager;
 class QUrl;
 
-class CatboxUploader : public ImgUploaderBase
+class InfomediaUploader : public ImgUploaderBase
 {
     Q_OBJECT
 public:
-    explicit CatboxUploader(const QPixmap& capture, QWidget* parent = nullptr);
+    explicit InfomediaUploader(const QPixmap& capture, QWidget* parent = nullptr);
     void deleteImage(const QString& fileName, const QString& deleteToken);
 
 private slots:
