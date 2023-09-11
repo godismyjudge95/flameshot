@@ -47,7 +47,7 @@ jobs:
             libqt6svg6-dev \
             libqt6dbus6 \
             libqt6network6 \
-            libqt6core6a \
+            libqt6core6 \
             libqt6widgets6 \
             libqt6gui6
 
