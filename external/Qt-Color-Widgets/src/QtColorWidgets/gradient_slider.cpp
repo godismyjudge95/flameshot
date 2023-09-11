@@ -59,7 +59,7 @@ public:
     void mouse_event(QMouseEvent *ev, GradientSlider* owner)
     {
         qreal pos = (owner->geometry().width() > 5) ?
-            static_cast<qreal>(ev->pos().x() - 2.5) / (owner->geometry().width() - 5) : 0;
+            static_cast<qreal>(ev->position().toPoint().x() - 2.5) / (owner->geometry().width() - 5) : 0;
         pos = qMax(qMin(pos, 1.0), 0.0);
         owner->setSliderPosition(qRound(owner->minimum() +
             pos * (owner->maximum() - owner->minimum())));

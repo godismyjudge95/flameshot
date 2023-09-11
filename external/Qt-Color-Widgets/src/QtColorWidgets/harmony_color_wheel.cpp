@@ -150,7 +150,7 @@ void HarmonyColorWheel::mousePressEvent(QMouseEvent *ev)
 {
     if ( ev->buttons() & Qt::LeftButton )
     {
-        QLineF ray = p->line_to_point(ev->pos());
+        QLineF ray = p->line_to_point(ev->position().toPoint());
         if ( ray.length() <= p->outer_radius() &&  ray.length() > p->inner_radius() )
         {
             p->mouse_status = DragCircle;
@@ -179,7 +179,7 @@ void HarmonyColorWheel::mouseMoveEvent(QMouseEvent *ev)
 {
     if ( p->mouse_status == DragCircle && p->current_ring_editor != -1 )
     {
-        auto hue = p->line_to_point(ev->pos()).angle()/360.0;
+        auto hue = p->line_to_point(ev->position().toPoint()).angle()/360.0;
         auto& editor = p->ring_editors[p->current_ring_editor];
         editor.hue_diff = Private::normalize(hue - p->hue);
         if (editor.symmetric_to != -1)

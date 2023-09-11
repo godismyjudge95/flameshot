@@ -34,7 +34,7 @@ bool DraggableWidgetMaker::eventFilter(QObject* obj, QEvent* event)
             auto* mouseEvent = static_cast<QMouseEvent*>(event);
 
             if (m_isPressing) {
-                QPoint widgetPos = widget->mapToGlobal(widget->pos());
+                QPoint widgetPos = widget->mapToGlobal(widget->position().toPoint());
                 QPoint eventPos = mouseEvent->globalPosition().toPoint();
                 QPoint diff = eventPos - m_mouseMovePos;
                 QPoint newPos = widgetPos + diff;

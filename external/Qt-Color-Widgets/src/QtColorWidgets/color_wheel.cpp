@@ -162,7 +162,7 @@ void ColorWheel::mouseMoveEvent(QMouseEvent *ev)
 {
     if (p->mouse_status == DragCircle )
     {
-        auto hue = p->line_to_point(ev->pos()).angle()/360.0;
+        auto hue = p->line_to_point(ev->position().toPoint()).angle()/360.0;
         p->hue = hue;
         p->render_inner_selector();
 
@@ -172,7 +172,7 @@ void ColorWheel::mouseMoveEvent(QMouseEvent *ev)
     }
     else if(p->mouse_status == DragSquare)
     {
-        QLineF glob_mouse_ln = p->line_to_point(ev->pos());
+        QLineF glob_mouse_ln = p->line_to_point(ev->position().toPoint());
         QLineF center_mouse_ln ( QPointF(0,0),
                                  glob_mouse_ln.p2() - glob_mouse_ln.p1() );
 
@@ -210,7 +210,7 @@ void ColorWheel::mousePressEvent(QMouseEvent *ev)
     if ( ev->buttons() & Qt::LeftButton )
     {
         setFocus();
-        QLineF ray = p->line_to_point(ev->pos());
+        QLineF ray = p->line_to_point(ev->position().toPoint());
         if ( ray.length() <= p->inner_radius() )
             p->mouse_status = DragSquare;
         else if ( ray.length() <= p->outer_radius() )

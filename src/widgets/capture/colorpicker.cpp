@@ -26,7 +26,7 @@ ColorPicker::ColorPicker(QWidget* parent)
 void ColorPicker::mouseMoveEvent(QMouseEvent* e)
 {
     for (int i = 0; i < m_colorList.size(); ++i) {
-        if (m_colorAreaList.at(i).contains(e->pos())) {
+        if (m_colorAreaList.at(i).contains(e->position().toPoint())) {
             m_selectedIndex = i;
             update(m_colorAreaList.at(i) + QMargins(10, 10, 10, 10));
             update(m_colorAreaList.at(m_lastIndex) + QMargins(10, 10, 10, 10));

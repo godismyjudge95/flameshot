@@ -45,7 +45,7 @@ void ImageLabel::setScaledPixmap()
 void ImageLabel::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        m_dragStartPosition = event->pos();
+        m_dragStartPosition = event->position().toPoint();
         setCursor(Qt::ClosedHandCursor);
     }
 }
@@ -62,7 +62,7 @@ void ImageLabel::mouseMoveEvent(QMouseEvent* event)
     if (!(event->buttons() & Qt::LeftButton)) {
         return;
     }
-    if ((event->pos() - m_dragStartPosition).manhattanLength() <
+    if ((event->position().toPoint() - m_dragStartPosition).manhattanLength() <
         QGuiApplication::styleHints()->startDragDistance()) {
         return;
     }

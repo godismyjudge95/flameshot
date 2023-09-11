@@ -174,14 +174,14 @@ void SelectionWidget::parentMousePressEvent(QMouseEvent* e)
         return;
     }
 
-    m_dragStartPos = e->pos();
-    m_activeSide = getMouseSide(e->pos());
+    m_dragStartPos = e->position().toPoint();
+    m_activeSide = getMouseSide(e->position().toPoint());
 }
 
 void SelectionWidget::parentMouseReleaseEvent(QMouseEvent* e)
 {
     // released outside of the selection area
-    if (!getMouseSide(e->pos())) {
+    if (!getMouseSide(e->position().toPoint())) {
         hide();
     }
 
@@ -200,7 +200,7 @@ void SelectionWidget::parentMouseMoveEvent(QMouseEvent* e)
 
     SideType mouseSide = m_activeSide;
     if (!m_activeSide) {
-        mouseSide = getMouseSide(e->pos());
+        mouseSide = getMouseSide(e->position().toPoint());
     }
 
     QPoint pos;
@@ -211,7 +211,7 @@ void SelectionWidget::parentMouseMoveEvent(QMouseEvent* e)
         pos = m_dragStartPos;
         setGeometry({ pos, pos });
     } else {
-        pos = e->pos();
+        pos = e->position().toPoint();
     }
 
     auto geom = geometry();
@@ -355,7 +355,7 @@ void SelectionWidget::parentMouseMoveEvent(QMouseEvent* e)
             break;
         default:
             if (m_activeSide) {
-                move(this->pos() + pos - m_dragStartPos);
+                move(this->position().toPoint() + pos - m_dragStartPos);
                 m_dragStartPos = pos;
                 /* do nothing special in case of preserveAspect */
             }
@@ -374,7 +374,7 @@ void SelectionWidget::parentMouseMoveEvent(QMouseEvent* e)
         setGeometry(geom.normalized());
         m_activeSide = getProperSide(m_activeSide, geom);
     }
-    m_dragStartPos = e->pos();
+    m_dragStartPos = e->position().toPoint();
 }
 
 void SelectionWidget::paintEvent(QPaintEvent*)

@@ -23,7 +23,7 @@ bool ColorPickerEditMode::eventFilter(QObject* obj, QEvent* event)
             auto mouseEvent = static_cast<QMouseEvent*>(event);
 
             if (mouseEvent->button() == Qt::LeftButton) {
-                m_mousePressPos = mouseEvent->pos();
+                m_mousePressPos = mouseEvent->position().toPoint();
                 m_mouseMovePos = m_mousePressPos;
 
                 for (int i = 1; i < m_colorList.size(); ++i) {
@@ -47,7 +47,7 @@ bool ColorPickerEditMode::eventFilter(QObject* obj, QEvent* event)
             auto mouseEvent = static_cast<QMouseEvent*>(event);
 
             if (m_isPressing) {
-                QPoint eventPos = mouseEvent->pos();
+                QPoint eventPos = mouseEvent->position().toPoint();
                 QPoint diff = eventPos - m_mouseMovePos;
                 m_colorAreaList[m_selectedIndex].translate(diff);
                 widget->update();

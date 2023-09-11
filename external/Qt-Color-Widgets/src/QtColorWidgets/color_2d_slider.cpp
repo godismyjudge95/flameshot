@@ -238,21 +238,21 @@ void Color2DSlider::paintEvent(QPaintEvent*)
 
 void Color2DSlider::mousePressEvent(QMouseEvent* event)
 {
-    p->setColorFromPos(event->pos(), size());
+    p->setColorFromPos(event->position().toPoint(), size());
     Q_EMIT colorChanged(color());
     update();
 }
 
 void Color2DSlider::mouseMoveEvent(QMouseEvent* event)
 {
-    p->setColorFromPos(event->pos(), size());
+    p->setColorFromPos(event->position().toPoint(), size());
     Q_EMIT colorChanged(color());
     update();
 }
 
 void Color2DSlider::mouseReleaseEvent(QMouseEvent* event)
 {
-    p->setColorFromPos(event->pos(), size());
+    p->setColorFromPos(event->position().toPoint(), size());
     Q_EMIT colorChanged(color());
     update();
 }

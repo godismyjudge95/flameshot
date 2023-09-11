@@ -116,7 +116,7 @@ public:
     void dropEvent(QDropEvent* event)
     {
         // Find the output location
-        drop_index = indexAt(event->pos());
+        drop_index = indexAt(event->position().toPoint());
         if ( drop_index == -1 )
             drop_index = palette.count();
 
@@ -139,20 +139,20 @@ public:
             if ( palette.columns() == 1 || forced_columns == 1 )
             {
                 // Dragged to the last quarter of the size of the square, add after
-                if ( event->posF().y() >= drop_rect.top() + drop_rect.height() * 3.0 / 4 )
+                if ( event->position().y() >= drop_rect.top() + drop_rect.height() * 3.0 / 4 )
                     drop_index++;
                 // Dragged to the middle of the square, overwrite existing color
-                else if ( event->posF().x() > drop_rect.top() + drop_rect.height() / 4 &&
+                else if ( event->position().x() > drop_rect.top() + drop_rect.height() / 4 &&
                         ( event->dropAction() != Qt::MoveAction || event->source() != owner ) )
                     drop_overwrite = true;
             }
             else
             {
                 // Dragged to the last quarter of the size of the square, add after
-                if ( event->posF().x() >= drop_rect.left() + drop_rect.width() * 3.0 / 4 )
+                if ( event->position().x() >= drop_rect.left() + drop_rect.width() * 3.0 / 4 )
                     drop_index++;
                 // Dragged to the middle of the square, overwrite existing color
-                else if ( event->posF().x() > drop_rect.left() + drop_rect.width() / 4 &&
+                else if ( event->position().x() > drop_rect.left() + drop_rect.width() / 4 &&
                         ( event->dropAction() != Qt::MoveAction || event->source() != owner ) )
                     drop_overwrite = true;
             }
@@ -550,9 +550,9 @@ void Swatch::mousePressEvent(QMouseEvent *event)
 {
     if ( event->button() == Qt::LeftButton )
     {
-        int index = p->indexAt(event->pos(), true);
+        int index = p->indexAt(event->position().toPoint(), true);
         setSelected(index);
-        p->drag_pos = event->pos();
+        p->drag_pos = event->position().toPoint();
         p->drag_index = index;
         if ( index == -2 )
             Q_EMIT clicked(-1, event->modifiers());
@@ -561,7 +561,7 @@ void Swatch::mousePressEvent(QMouseEvent *event)
     }
     else if ( event->button() == Qt::RightButton )
     {
-        int index = p->indexAt(event->pos(), true);
+        int index = p->indexAt(event->position().toPoint(), true);
 
         if ( index == -2 )
             Q_EMIT rightClicked(-1, event->modifiers());
@@ -573,7 +573,7 @@ void Swatch::mousePressEvent(QMouseEvent *event)
 void Swatch::mouseMoveEvent(QMouseEvent *event)
 {
     if ( p->drag_index != -1 &&  (event->buttons() & Qt::LeftButton) &&
-        (p->drag_pos - event->pos()).manhattanLength() >= QApplication::startDragDistance() )
+        (p->drag_pos - event->position().toPoint()).manhattanLength() >= QApplication::startDragDistance() )
     {
         QColor color = p->palette.colorAt(p->drag_index);
 
@@ -606,7 +606,7 @@ void Swatch::mouseDoubleClickEvent(QMouseEvent *event)
 {
     if ( event->button() == Qt::LeftButton )
     {
-        int index = p->indexAt(event->pos(), true);
+        int index = p->indexAt(event->position().toPoint(), true);
 
         if ( index == -2 )
             Q_EMIT doubleClicked(-1, event->modifiers());

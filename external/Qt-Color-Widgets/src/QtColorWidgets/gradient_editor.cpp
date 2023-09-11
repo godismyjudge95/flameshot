@@ -176,7 +176,7 @@ public:
 
     void add_color_mouse(QMouseEvent* ev, GradientEditor* parent)
     {
-        qreal pos = move_pos(ev->pos(), parent);
+        qreal pos = move_pos(ev->position().toPoint(), parent);
         auto info = gradientBlendedColorInsert(stops, pos);
         stops.insert(info.first, info.second);
         selected = highlighted = info.first;
@@ -239,7 +239,7 @@ void GradientEditor::mouseDoubleClickEvent(QMouseEvent *ev)
         if ( p->highlighted != -1 )
         {
             qreal highlighted_pos = p->paint_pos(p->stops[p->highlighted], this);
-            qreal mouse_pos = orientation() == Qt::Vertical ? ev->pos().y() : ev->pos().x();
+            qreal mouse_pos = orientation() == Qt::Vertical ? ev->position().toPoint().y() : ev->position().toPoint().x();
             qreal tolerance = 4;
             if ( qAbs(mouse_pos - highlighted_pos) <= tolerance )
             {
@@ -263,7 +263,7 @@ void GradientEditor::mousePressEvent(QMouseEvent *ev)
     if ( ev->button() == Qt::LeftButton )
     {
         ev->accept();
-        p->selected = p->highlighted = p->closest(ev->pos(), this);
+        p->selected = p->highlighted = p->closest(ev->position().toPoint(), this);
         emit selectedStopChanged(p->selected);
         update();
     }
@@ -278,7 +278,7 @@ void GradientEditor::mouseMoveEvent(QMouseEvent *ev)
     if ( ev->buttons() & Qt::LeftButton && p->selected != -1 )
     {
         ev->accept();
-        qreal pos = p->move_pos(ev->pos(), this);
+        qreal pos = p->move_pos(ev->position().toPoint(), this);
         if ( p->selected > 0 && pos < p->stops[p->selected-1].first )
         {
             std::swap(p->stops[p->selected], p->stops[p->selected-1]);
@@ -298,7 +298,7 @@ void GradientEditor::mouseMoveEvent(QMouseEvent *ev)
     }
     else
     {
-        p->highlighted = p->closest(ev->pos(), this);
+        p->highlighted = p->closest(ev->position().toPoint(), this);
         update();
     }
 }

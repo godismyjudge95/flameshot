@@ -168,14 +168,14 @@ void ColorPreview::resizeEvent(QResizeEvent *)
 
 void ColorPreview::mouseReleaseEvent(QMouseEvent * ev)
 {
-    if ( QRect(QPoint(0,0),size()).contains(ev->pos()) )
+    if ( QRect(QPoint(0,0),size()).contains(ev->position().toPoint()) )
         Q_EMIT clicked();
 }
 
 void ColorPreview::mouseMoveEvent(QMouseEvent *ev)
 {
 
-    if ( ev->buttons() &Qt::LeftButton && !QRect(QPoint(0,0),size()).contains(ev->pos()) )
+    if ( ev->buttons() &Qt::LeftButton && !QRect(QPoint(0,0),size()).contains(ev->position().toPoint()) )
     {
         QMimeData *data = new QMimeData;
 
