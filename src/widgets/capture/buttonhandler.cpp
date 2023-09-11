@@ -372,8 +372,8 @@ bool ButtonHandler::contains(const QPoint& p) const
     if (m_vectorButtons.isEmpty()) {
         return false;
     }
-    QPoint first(m_vectorButtons.first()->position().toPoint());
-    QPoint last(m_vectorButtons.last()->position().toPoint());
+    QPoint first(m_vectorButtons.first()->pos());
+    QPoint last(m_vectorButtons.last()->pos());
     bool firstIsTopLeft = (first.x() <= last.x() && first.y() <= last.y());
     QPoint topLeft = firstIsTopLeft ? first : last;
     QPoint bottonRight = firstIsTopLeft ? last : first;

@@ -763,7 +763,8 @@ void CaptureWidget::mousePressEvent(QMouseEvent* e)
         return;
     }
     // reset object selection if capture area selection is active
-    if (m_selection->getMouseSide(e->position().toPoint()) != SelectionWidget::CENTER) {
+    if (m_selection->getMouseSide(e->position().toPoint()) !=
+        SelectionWidget::CENTER) {
         m_panel->setActiveLayer(-1);
     }
 
@@ -785,7 +786,8 @@ void CaptureWidget::mousePressEvent(QMouseEvent* e)
 
     // Commit current tool if it has edit widget and mouse click is outside
     // of it
-    if (m_toolWidget && !m_toolWidget->geometry().contains(e->position().toPoint())) {
+    if (m_toolWidget &&
+        !m_toolWidget->geometry().contains(e->position().toPoint())) {
         commitCurrentTool();
         m_panel->setToolWidget(nullptr);
         drawToolsData();
@@ -806,7 +808,7 @@ void CaptureWidget::mouseDoubleClickEvent(QMouseEvent* event)
         if (activeTool && activeTool->type() == CaptureTool::TYPE_TEXT) {
             m_activeTool = activeTool;
             m_mouseIsClicked = false;
-            m_context.mousePos = *m_activeTool->position().toPoint();
+            m_context.mousePos = *m_activeTool->pos();
             m_captureToolObjectsBackup = m_captureToolObjects;
             m_activeTool->setEditMode(true);
             drawToolsData();
@@ -865,7 +867,7 @@ void CaptureWidget::mouseMoveEvent(QMouseEvent* e)
             if (m_activeToolOffsetToMouseOnStart.isNull()) {
                 setCursor(Qt::ClosedHandCursor);
                 m_activeToolOffsetToMouseOnStart =
-                  e->position().toPoint() - *activeTool->position().toPoint();
+                  e->position().toPoint() - *activeTool->pos();
             }
             if (!m_activeToolIsMoved) {
                 // save state before movement for undo stack
@@ -875,7 +877,8 @@ void CaptureWidget::mouseMoveEvent(QMouseEvent* e)
             // update the old region of the selection, margins are added to
             // ensure selection outline is updated too
             update(paddedUpdateRect(activeTool->boundingRect()));
-            activeTool->move(e->position().toPoint() - m_activeToolOffsetToMouseOnStart);
+            activeTool->move(e->position().toPoint() -
+                             m_activeToolOffsetToMouseOnStart);
             drawToolsData();
         }
     } else if (m_activeTool) {
@@ -883,8 +886,9 @@ void CaptureWidget::mouseMoveEvent(QMouseEvent* e)
         if (m_adjustmentButtonPressed) {
             m_activeTool->drawMoveWithAdjustment(e->position().toPoint());
         } else {
-            m_activeTool->drawMove(m_displayGrid ? snapToGrid(e->position().toPoint())
-                                                 : e->position().toPoint());
+            m_activeTool->drawMove(m_displayGrid
+                                     ? snapToGrid(e->position().toPoint())
+                                     : e->position().toPoint());
         }
         // update drawing object
         updateTool(m_activeTool);

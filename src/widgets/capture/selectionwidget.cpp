@@ -355,7 +355,7 @@ void SelectionWidget::parentMouseMoveEvent(QMouseEvent* e)
             break;
         default:
             if (m_activeSide) {
-                move(this->position().toPoint() + pos - m_dragStartPos);
+                move(this->pos() + pos - m_dragStartPos);
                 m_dragStartPos = pos;
                 /* do nothing special in case of preserveAspect */
             }

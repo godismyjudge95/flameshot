@@ -111,7 +111,7 @@ QPixmap ScreenGrabber::grabEntireDesktop(bool& ok)
 #if defined(Q_OS_MACOS)
     QScreen* currentScreen = QGuiAppCurrentScreen().currentScreen();
     QPixmap screenPixmap(
-      currentScreen->grabWindow(QApplication::desktop()->winId(),
+      currentScreen->grabWindow(0,
                                 currentScreen->geometry().x(),
                                 currentScreen->geometry().y(),
                                 currentScreen->geometry().width(),
