@@ -422,7 +422,7 @@ endif ()
 # macdeployqt
 if (APPLE)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
-    execute_process(COMMAND brew --prefix qt5 OUTPUT_VARIABLE QTDIR)
+    execute_process(COMMAND brew --prefix qt6 OUTPUT_VARIABLE QTDIR)
     string(REGEX REPLACE "\n$" "" QTDIR "${QTDIR}")
     set(MAC_DEPLOY_QT ${QTDIR}/bin/macdeployqt)
     if (EXISTS ${MAC_DEPLOY_QT})

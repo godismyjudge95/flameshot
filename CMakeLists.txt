@@ -53,7 +53,7 @@ if(WIN32)
   add_definitions(-DFLAMESHOT_VERSION_BUILD=1)
   add_definitions(-DFLAMESHOT_VERSION_STRING="${PROJECT_VERSION}")
 elseif(APPLE)
-  set(Qt5_DIR "$(brew --prefix qt5)/lib/cmake/Qt5/" CACHE PATH "directory where Qt5Config.cmake exists.")
+  set(Qt6_DIR "$(brew --prefix qt6)/lib/cmake/Qt6/" CACHE PATH "directory where Qt6Config.cmake exists.")
   set(CMAKE_MACOSX_BUNDLE ON)
   set(CMAKE_MACOSX_RPATH ON)
 endif()
@@ -100,7 +100,7 @@ set(QAPPLICATION_CLASS
 if(USE_EXTERNAL_SINGLEAPPLICATION)
   # look for external QtSingleApplication
   # package dev-qt/qtsingleapplication provides no symlink to current version
-  set(qtsingleapplication_libs libQt5Solutions_SingleApplication-2.6 Qt5Solutions_SingleApplication-2.6)
+  set(qtsingleapplication_libs libQt6Solutions_SingleApplication-2.6 Qt6Solutions_SingleApplication-2.6)
   find_library(QTSINGLEAPPLICATION_LIBRARY NAMES ${qtsingleapplication_libs})
   message(STATUS "Using external SingleApplication library")
 else()
@@ -111,7 +111,7 @@ endif()
 
 option(BUILD_STATIC_LIBS ON)
 option(BUILD_SHARED_LIBS OFF)
-add_subdirectory(external/Qt-Color-Widgets EXCLUDE_FROM_ALL) 
+add_subdirectory(external/Qt-Color-Widgets EXCLUDE_FROM_ALL)
 
 
 if (APPLE)
