@@ -17,7 +17,6 @@
 #include <QSizePolicy>
 #include <QSpinBox>
 #include <QStandardPaths>
-#include <QTextCodec>
 #include <QVBoxLayout>
 #include <qcheckbox.h>
 #include <qcombobox.h>
@@ -173,12 +172,13 @@ void GeneralConf::importConfiguration()
         return;
     }
     QFile file(fileName);
-    QTextCodec* codec = QTextCodec::codecForLocale();
     if (!file.open(QFile::ReadOnly)) {
         QMessageBox::about(this, tr("Error"), tr("Unable to read file."));
         return;
     }
-    QString text = codec->toUnicode(file.readAll());
+    QTextStream stream(&file);
+    stream.setEncoding(QStringConverter::Utf8);
+    QString text = stream.readAll();
     file.close();
 
     QFile config(ConfigHandler().configFilePath());
@@ -186,7 +186,9 @@ void GeneralConf::importConfiguration()
         QMessageBox::about(this, tr("Error"), tr("Unable to write file."));
         return;
     }
-    config.write(codec->fromUnicode(text));
+    QTextStream out(&config);
+    out.setEncoding(QStringConverter::Utf8);
+    out << text;
     config.close();
 }
 
@@ -477,8 +479,7 @@ void GeneralConf::initImgUploaderPlugin()
     m_imgUploaderPlugin->setCurrentIndex(currentIndex);
 
     connect(m_imgUploaderPlugin,
-            static_cast<void (QComboBox::*)(const QString&)>(
-              &QComboBox::currentIndexChanged),
+            &QComboBox::currentTextChanged,
             this,
             &GeneralConf::imgUploaderPluginChanged);
 

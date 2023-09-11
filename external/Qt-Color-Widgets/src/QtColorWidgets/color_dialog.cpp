@@ -344,7 +344,7 @@ void ColorDialog::mouseReleaseEvent(QMouseEvent *event)
 {
     if (p->pick_from_screen)
     {
-        setColorInternal(utils::get_screen_color(event->globalPos()));
+        setColorInternal(utils::get_screen_color(event->globalPosition().toPoint()));
         p->pick_from_screen = false;
         releaseMouse();
     }
@@ -354,7 +354,7 @@ void ColorDialog::mouseMoveEvent(QMouseEvent *event)
 {
     if (p->pick_from_screen)
     {
-        setColorInternal(utils::get_screen_color(event->globalPos()));
+        setColorInternal(utils::get_screen_color(event->globalPosition().toPoint()));
     }
 }
 

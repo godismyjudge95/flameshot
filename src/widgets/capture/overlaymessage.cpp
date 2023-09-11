@@ -31,7 +31,8 @@ OverlayMessage::OverlayMessage(QWidget* parent, const QRect& targetArea)
     setStyleSheet(
       QStringLiteral("QLabel { color: %1; }").arg(m_textColor.name()));
 
-    setMargin(QApplication::fontMetrics().height() / 2);
+    QFontMetrics metrics(QApplication::font());
+    setMargin(metrics.height() / 2);
     QWidget::hide();
 }
 

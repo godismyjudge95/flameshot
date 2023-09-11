@@ -68,7 +68,7 @@ QKeySequence QHotkey::shortcut() const
 {
     if (_keyCode == Qt::Key_unknown)
         return QKeySequence();
-    return QKeySequence(static_cast<int>(_keyCode | _modifiers));
+    return QKeySequence(_keyCode | _modifiers);
 }
 
 Qt::Key QHotkey::keyCode() const
@@ -382,10 +382,10 @@ bool QHotkey::NativeShortcut::operator!=(QHotkey::NativeShortcut other) const
 
 uint qHash(QHotkey::NativeShortcut key)
 {
-    return qHash(key.key) ^ qHash(key.modifier);
+    return qHash(qMakePair(key.key, key.modifier));
 }
 
 uint qHash(QHotkey::NativeShortcut key, uint seed)
 {
-    return qHash(key.key, seed) ^ qHash(key.modifier, seed);
+    return qHash(qMakePair(key.key, key.modifier), seed);
 }

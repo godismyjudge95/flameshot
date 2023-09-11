@@ -15,7 +15,8 @@ LoadSpinner::LoadSpinner(QWidget* parent)
   , m_growing(true)
 {
     setAttribute(Qt::WA_TranslucentBackground);
-    const int size = QApplication::fontMetrics().height() * 8;
+    QFontMetrics metrics(QApplication::font());
+    const int size = metrics.height() * 8;
     setFixedSize(size, size);
     updateFrame();
     // init timer

@@ -7,7 +7,6 @@
 #include "src/utils/filenamehandler.h"
 #include "src/utils/systemnotification.h"
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QGuiApplication>
 #include <QPixmap>
 #include <QProcess>
@@ -168,13 +167,8 @@ QPixmap ScreenGrabber::grabEntireDesktop(bool& ok)
 #if defined(Q_OS_LINUX) || defined(Q_OS_UNIX) || defined(Q_OS_WIN)
     QRect geometry = desktopGeometry();
     QPixmap p(QApplication::primaryScreen()->grabWindow(
-      QApplication::desktop()->winId(),
-      geometry.x(),
-      geometry.y(),
-      geometry.width(),
-      geometry.height()));
-    auto screenNumber = QApplication::desktop()->screenNumber();
-    QScreen* screen = QApplication::screens()[screenNumber];
+      0, geometry.x(), geometry.y(), geometry.width(), geometry.height()));
+    QScreen* screen = QApplication::primaryScreen();
     p.setDevicePixelRatio(screen->devicePixelRatio());
     return p;
 #endif
@@ -215,11 +209,8 @@ QPixmap ScreenGrabber::grabScreen(QScreen* screen, bool& ok)
         }
     } else {
         ok = true;
-        return screen->grabWindow(QApplication::desktop()->winId(),
-                                  geometry.x(),
-                                  geometry.y(),
-                                  geometry.width(),
-                                  geometry.height());
+        return screen->grabWindow(
+          0, geometry.x(), geometry.y(), geometry.width(), geometry.height());
     }
     return p;
 }

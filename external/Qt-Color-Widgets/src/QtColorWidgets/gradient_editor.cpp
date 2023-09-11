@@ -107,8 +107,8 @@ public:
 
     void drop_event(QDropEvent* event, GradientEditor* owner)
     {
-        drop_index = closest(event->pos(), owner);
-        drop_pos = move_pos(event->pos(), owner);
+        drop_index = closest(event->position().toPoint(), owner);
+        drop_pos = move_pos(event->position().toPoint(), owner);
         if ( drop_index == -1 )
             drop_index = stops.size();
 
@@ -309,7 +309,7 @@ void GradientEditor::mouseReleaseEvent(QMouseEvent *ev)
     {
         ev->accept();
         QRect bound_rect = rect();
-        QPoint localpt = ev->localPos().toPoint();
+        QPoint localpt = ev->position().toPoint();
         const int w_margin = 24;
         const int h_margin = 8;
         bool x_out = localpt.x() < -w_margin || localpt.x() > bound_rect.width() + w_margin;
@@ -355,7 +355,7 @@ void GradientEditor::mouseReleaseEvent(QMouseEvent *ev)
             });
         }
 
-        menu.exec(ev->globalPos());
+        menu.exec(ev->globalPosition().toPoint());
     }
     else
     {
@@ -503,8 +503,7 @@ QSize GradientEditor::sizeHint() const
         std::swap(w, h);
     }
     QSlider s;
-    return style()->sizeFromContents(QStyle::CT_Slider, &opt, QSize(w, h), &s)
-        .expandedTo(QApplication::globalStrut());
+    return style()->sizeFromContents(QStyle::CT_Slider, &opt, QSize(w, h), &s);
 }
 
 int GradientEditor::selectedStop() const

@@ -26,7 +26,7 @@ bool DraggableWidgetMaker::eventFilter(QObject* obj, QEvent* event)
             m_isDragging = false;
             if (mouseEvent->button() == Qt::LeftButton) {
                 m_isPressing = true;
-                m_mousePressPos = mouseEvent->globalPos();
+                m_mousePressPos = mouseEvent->globalPosition().toPoint();
                 m_mouseMovePos = m_mousePressPos;
             }
         } break;
@@ -35,7 +35,7 @@ bool DraggableWidgetMaker::eventFilter(QObject* obj, QEvent* event)
 
             if (m_isPressing) {
                 QPoint widgetPos = widget->mapToGlobal(widget->pos());
-                QPoint eventPos = mouseEvent->globalPos();
+                QPoint eventPos = mouseEvent->globalPosition().toPoint();
                 QPoint diff = eventPos - m_mouseMovePos;
                 QPoint newPos = widgetPos + diff;
 

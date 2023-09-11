@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
 
     // required for the button serialization
     // TODO: change to QVector in v1.0
-    qRegisterMetaTypeStreamOperators<QList<int>>("QList<int>");
+    // qRegisterMetaTypeStreamOperators<QList<int>>("QList<int>");
     QCoreApplication::setApplicationVersion(APP_VERSION);
     QCoreApplication::setApplicationName(QStringLiteral("flameshot"));
     QCoreApplication::setOrganizationName(QStringLiteral("flameshot"));
@@ -120,14 +120,16 @@ int main(int argc, char* argv[])
             }
         }
 
-        qtTranslator.load(
-          QLocale::system(),
-          "qt",
-          "_",
-          QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+        bool translatorLoaded =
+          qtTranslator.load(QLocale::system(),
+                            "qt",
+                            "_",
+                            QLibraryInfo::path(QLibraryInfo::TranslationsPath));
 
-        qApp->installTranslator(&translator);
-        qApp->installTranslator(&qtTranslator);
+        if (translatorLoaded) {
+            qApp->installTranslator(&translator);
+            qApp->installTranslator(&qtTranslator);
+        }
         qApp->setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);
 
         auto c = Flameshot::instance();
