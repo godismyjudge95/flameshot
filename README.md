@@ -397,7 +397,7 @@ Also you can open and build/debug the project in a C++ IDE. For example, in Qt C
 
 #### Compile-time
 
-- Qt >= 5.9
+- Qt >= 6.4
   + Development tools
 - GCC >= 7.4
 - CMake >= 3.13
@@ -417,10 +417,10 @@ Also you can open and build/debug the project in a C++ IDE. For example, in Qt C
 
 ```shell
 # Compile-time
-apt install g++ cmake build-essential qtbase5-dev qttools5-dev-tools libqt6svg5-dev qttools5-dev
+apt install g++ cmake build-essential qt6-base-dev qt6-tools-dev-tools qt6-svg-dev qt6-tools-dev
 
 # Run-time
-apt install libqt6dbus5 libqt6network5 libqt6core5a libqt6widgets5 libqt6gui5 libqt6svg5
+apt install libqt6dbus6 libqt6network6 libqt6core6 libqt6widgets6 libqt6gui6 libqt6svg6
 
 # Optional
 apt install git openssl ca-certificates

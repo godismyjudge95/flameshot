@@ -385,14 +385,14 @@ jobs:
             extra-cmake-modules \
             build-essential \
             qt6-default \
-            qttools5-dev-tools \
-            qttools5-dev \
-            libqt6dbus5 \
-            libqt6network5 \
-            libqt6core5a \
-            libqt6widgets5 \
-            libqt6gui5 \
-            libqt6svg5-dev \
+            qt6-tools-dev-tools \
+            qt6-tools-dev \
+            qt6-svg-dev \
+            libqt6dbus6 \
+            libqt6network6 \
+            libqt6core6 \
+            libqt6widgets6 \
+            libqt6gui6 \
             appstream \
             hicolor-icon-theme \
             fcitx-frontend-qt6 \

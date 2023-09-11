@@ -15,9 +15,8 @@ void QHotkey::addGlobalMapping(const QKeySequence& shortcut,
       QHotkeyPrivate::instance(),
       "addMappingInvoked",
       Qt::QueuedConnection,
-      Q_ARG(Qt::Key, Qt::Key(shortcut[0] & ~Qt::KeyboardModifierMask)),
-      Q_ARG(Qt::KeyboardModifiers,
-            Qt::KeyboardModifiers(shortcut[0] & Qt::KeyboardModifierMask)),
+      Q_ARG(Qt::Key, Qt::Key(QKeyCombination(shortcut[0]).key())),
+      Q_ARG(Qt::KeyboardModifiers, Qt::KeyboardModifiers(QKeyCombination(shortcut[0]).keyboardModifiers())),
       Q_ARG(QHotkey::NativeShortcut, nativeShortcut));
 }
 
@@ -102,8 +101,8 @@ bool QHotkey::setShortcut(const QKeySequence& shortcut, bool autoRegister)
     }
 
     return setShortcut(
-      Qt::Key(shortcut[0] & ~Qt::KeyboardModifierMask),
-      Qt::KeyboardModifiers(shortcut[0] & Qt::KeyboardModifierMask),
+      Qt::Key(QKeyCombination(shortcut[0]).key()),
+      Qt::KeyboardModifiers(QKeyCombination(shortcut[0]).keyboardModifiers()),
       autoRegister);
 }
 

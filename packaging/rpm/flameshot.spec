@@ -33,28 +33,28 @@ BuildRequires: ninja-build
 %endif
 BuildRequires: desktop-file-utils
 
-BuildRequires: cmake(Qt6Core) >= 5.9.0
+BuildRequires: cmake(Qt6Core) >= 6.4.0
 %if %{is_rhel_or_fedora}
 BuildRequires: cmake(KF5GuiAddons) >= 5.89.0
 %endif
-BuildRequires: cmake(Qt6DBus) >= 5.9.0
-BuildRequires: cmake(Qt6Gui) >= 5.9.0
-BuildRequires: cmake(Qt6LinguistTools) >= 5.9.0
-BuildRequires: cmake(Qt6Network) >= 5.9.0
-BuildRequires: cmake(Qt6Svg) >= 5.9.0
-BuildRequires: cmake(Qt6Widgets) >= 5.9.0
+BuildRequires: cmake(Qt6DBus) >= 6.4.0
+BuildRequires: cmake(Qt6Gui) >= 6.4.0
+BuildRequires: cmake(Qt6LinguistTools) >= 6.4.0
+BuildRequires: cmake(Qt6Network) >= 6.4.0
+BuildRequires: cmake(Qt6Svg) >= 6.4.0
+BuildRequires: cmake(Qt6Widgets) >= 6.4.0
 
 
 Requires: hicolor-icon-theme
 %if %{is_rhel_or_fedora}
-Requires: qt6-qtbase >= 5.9.0
-Requires: qt6-qttools >= 5.9.0
-Requires: qt6-qtsvg%{?_isa} >= 5.9.0
+Requires: qt6-qtbase >= 6.4.0
+Requires: qt6-qttools >= 6.4.0
+Requires: qt6-qtsvg%{?_isa} >= 6.4.0
 %endif
 %if %{is_suse_leap}
-Requires: libQt6Core5 >= 5.9.0
-Requires: libqt6-qttools >= 5.9.0
-Requires: libQt6Svg5 >= 5.9.0
+Requires: libQt6Core6 >= 6.4.0
+Requires: libqt6-qttools >= 6.4.0
+Requires: libQt6Svg6 >= 6.4.0
 %endif
 Recommends: xdg-desktop-portal%{?_isa}
 Recommends: (xdg-desktop-portal-gnome%{?_isa} if gnome-shell%{?_isa})

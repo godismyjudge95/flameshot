@@ -128,7 +128,7 @@ QString SingleApplicationPrivate::getUsername()
 void SingleApplicationPrivate::genBlockServerName()
 {
     QCryptographicHash appData(QCryptographicHash::Sha256);
-    appData.addData("SingleApplication", 17);
+    appData.addData(QByteArray("SingleApplication", 17));
     appData.addData(SingleApplication::app_t::applicationName().toUtf8());
     appData.addData(SingleApplication::app_t::organizationName().toUtf8());
     appData.addData(SingleApplication::app_t::organizationDomain().toUtf8());
@@ -260,8 +260,7 @@ bool SingleApplicationPrivate::connectToPrimary(int timeout,
     writeStream << blockServerName.toLatin1();
     writeStream << static_cast<quint8>(connectionType);
     writeStream << instanceNumber;
-    quint16 checksum =
-      qChecksum(initMsg.constData(), static_cast<quint32>(initMsg.length()));
+    quint16 checksum = qChecksum(QByteArrayView(initMsg.constData(), static_cast<quint32>(initMsg.length())));
     writeStream << checksum;
 
     // The header indicates the message length that follows
@@ -284,8 +283,8 @@ bool SingleApplicationPrivate::connectToPrimary(int timeout,
 
 quint16 SingleApplicationPrivate::blockChecksum()
 {
-    return qChecksum(static_cast<const char*>(memory->data()),
-                     offsetof(InstancesInfo, checksum));
+    return qChecksum(QByteArrayView(static_cast<const char*>(memory->data()),
+                     offsetof(InstancesInfo, checksum)));
 }
 
 qint64 SingleApplicationPrivate::primaryPid()
@@ -421,8 +420,8 @@ void SingleApplicationPrivate::readInitMessageBody(QLocalSocket* sock)
     readStream >> msgChecksum;
 
     const quint16 actualChecksum =
-      qChecksum(msgBytes.constData(),
-                static_cast<quint32>(msgBytes.length() - sizeof(quint16)));
+      qChecksum(QByteArrayView(msgBytes.constData(),
+                static_cast<quint32>(msgBytes.length() - sizeof(quint16))));
 
     bool isValid = readStream.status() == QDataStream::Ok &&
                    QLatin1String(latin1Name) == blockServerName &&

@@ -9,7 +9,7 @@ public:
     // QAbstractNativeEventFilter interface
     bool nativeEventFilter(const QByteArray& eventType,
                            void* message,
-                           long* result) Q_DECL_OVERRIDE;
+                           qintptr* result) Q_DECL_OVERRIDE;
 
     static OSStatus hotkeyPressEventHandler(EventHandlerCallRef nextHandler,
                                             EventRef event,
@@ -42,7 +42,7 @@ QHash<QHotkey::NativeShortcut, EventHotKeyRef> QHotkeyPrivateMac::hotkeyRefs;
 
 bool QHotkeyPrivateMac::nativeEventFilter(const QByteArray& eventType,
                                           void* message,
-                                          long* result)
+                                          qintptr* result)
 {
     Q_UNUSED(eventType)
     Q_UNUSED(message)
