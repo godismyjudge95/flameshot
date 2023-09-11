@@ -1,5 +1,5 @@
 find_package(
-        Qt5
+        Qt6
         CONFIG
         REQUIRED
         Core
@@ -126,9 +126,9 @@ set(FLAMESHOT_TS_FILES
          )
 
 if (GENERATE_TS)
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${FLAMESHOT_TS_FILES})
+    qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${FLAMESHOT_TS_FILES})
 else ()
-    qt5_add_translation(QM_FILES ${FLAMESHOT_TS_FILES})
+    qt6_add_translation(QM_FILES ${FLAMESHOT_TS_FILES})
 endif ()
 
 target_sources(
@@ -201,10 +201,10 @@ target_link_libraries(
         flameshot
         project_warnings
         project_options
-        Qt5::Svg
-        Qt5::DBus
-        Qt5::Network
-        Qt5::Widgets
+        Qt6::Svg
+        Qt6::DBus
+        Qt6::Network
+        Qt6::Widgets
         ${QTSINGLEAPPLICATION_LIBRARY}
         QtColorWidgets
 

@@ -3,13 +3,13 @@ image:
 clone_folder: c:\projects\source
 
 environment:
-  Qt5_INSTALL_DIR: 'C:\Qt\5.15.2\msvc2019_64'
-  PATH: '%Qt5_INSTALL_DIR%\bin;%PATH%'
+  Qt6_INSTALL_DIR: 'C:\Qt\5.15.2\msvc2019_64'
+  PATH: '%Qt6_INSTALL_DIR%\bin;%PATH%'
 
 build_script:
 - cmd: >-
 
-    set QTDIR=%Qt5_INSTALL_DIR%
+    set QTDIR=%Qt6_INSTALL_DIR%
 
     set "VCINSTALLDIR=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC"
 
@@ -19,7 +19,7 @@ build_script:
 
     cmake --build build --parallel 2 --config "Release"
 
-    cd build 
+    cd build
 
     cpack -G WIX -B package
 

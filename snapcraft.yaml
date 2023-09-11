@@ -67,7 +67,7 @@ parts:
     build-packages:
       - g++
       - make
-      - qt5-default
+      - qt6-default
       - git
     stage-packages:
       - dbus-x11

@@ -33,28 +33,28 @@ BuildRequires: ninja-build
 %endif
 BuildRequires: desktop-file-utils
 
-BuildRequires: cmake(Qt5Core) >= 5.9.0
+BuildRequires: cmake(Qt6Core) >= 5.9.0
 %if %{is_rhel_or_fedora}
 BuildRequires: cmake(KF5GuiAddons) >= 5.89.0
 %endif
-BuildRequires: cmake(Qt5DBus) >= 5.9.0
-BuildRequires: cmake(Qt5Gui) >= 5.9.0
-BuildRequires: cmake(Qt5LinguistTools) >= 5.9.0
-BuildRequires: cmake(Qt5Network) >= 5.9.0
-BuildRequires: cmake(Qt5Svg) >= 5.9.0
-BuildRequires: cmake(Qt5Widgets) >= 5.9.0
+BuildRequires: cmake(Qt6DBus) >= 5.9.0
+BuildRequires: cmake(Qt6Gui) >= 5.9.0
+BuildRequires: cmake(Qt6LinguistTools) >= 5.9.0
+BuildRequires: cmake(Qt6Network) >= 5.9.0
+BuildRequires: cmake(Qt6Svg) >= 5.9.0
+BuildRequires: cmake(Qt6Widgets) >= 5.9.0
 
 
 Requires: hicolor-icon-theme
 %if %{is_rhel_or_fedora}
-Requires: qt5-qtbase >= 5.9.0
-Requires: qt5-qttools >= 5.9.0
-Requires: qt5-qtsvg%{?_isa} >= 5.9.0
+Requires: qt6-qtbase >= 5.9.0
+Requires: qt6-qttools >= 5.9.0
+Requires: qt6-qtsvg%{?_isa} >= 5.9.0
 %endif
 %if %{is_suse_leap}
-Requires: libQt5Core5 >= 5.9.0
-Requires: libqt5-qttools >= 5.9.0
-Requires: libQt5Svg5 >= 5.9.0
+Requires: libQt6Core5 >= 5.9.0
+Requires: libqt6-qttools >= 5.9.0
+Requires: libQt6Svg5 >= 5.9.0
 %endif
 Recommends: xdg-desktop-portal%{?_isa}
 Recommends: (xdg-desktop-portal-gnome%{?_isa} if gnome-shell%{?_isa})
@@ -81,7 +81,7 @@ Features:
 %cmake -DCMAKE_BUILD_TYPE=Release
 %endif
 %if %{is_rhel_or_fedora}
-	
+
 %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DUSE_WAYLAND_CLIPBOARD:BOOL=ON \

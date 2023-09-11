@@ -44,7 +44,7 @@ SET (${COLORWIDGET_PROJECT_NAME}_VERSION "${${COLORWIDGET_PROJECT_NAME}_VERSION_
 
 
 set(QT_VERSION_MAJOR 5)
-find_package(QT NAMES Qt5 Qt4 COMPONENTS Core QUIET)
+find_package(QT NAMES Qt6 Qt4 COMPONENTS Core QUIET)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Widgets REQUIRED)
 
 
@@ -154,10 +154,10 @@ add_subdirectory (gallery)
 
 option(QTCOLORWIDGETS_DESIGNER_PLUGIN "Build QtDesigner plugin" ON)
 if (${QTCOLORWIDGETS_DESIGNER_PLUGIN})
-    find_package (Qt5Designer QUIET)
-    if (Qt5Designer_FOUND)
+    find_package (Qt6Designer QUIET)
+    if (Qt6Designer_FOUND)
         add_subdirectory (color_widgets_designer_plugin)
-    endif(Qt5Designer_FOUND)
+    endif(Qt6Designer_FOUND)
 endif()
 
 configure_file(Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)

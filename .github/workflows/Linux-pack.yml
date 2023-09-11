@@ -384,18 +384,18 @@ jobs:
             cmake \
             extra-cmake-modules \
             build-essential \
-            qt5-default \
+            qt6-default \
             qttools5-dev-tools \
             qttools5-dev \
-            libqt5dbus5 \
-            libqt5network5 \
-            libqt5core5a \
-            libqt5widgets5 \
-            libqt5gui5 \
-            libqt5svg5-dev \
+            libqt6dbus5 \
+            libqt6network5 \
+            libqt6core5a \
+            libqt6widgets5 \
+            libqt6gui5 \
+            libqt6svg5-dev \
             appstream \
             hicolor-icon-theme \
-            fcitx-frontend-qt5 \
+            fcitx-frontend-qt6 \
             openssl \
             ca-certificates \
             jq
@@ -425,7 +425,7 @@ jobs:
 
           mkdir -p "${APPIMAGE_DST_PATH}/usr/plugins/platforminputcontexts"
           cp \
-            /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
+            /usr/lib/x86_64-linux-gnu/qt6/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so \
             "${APPIMAGE_DST_PATH}/usr/plugins/platforminputcontexts/"
 
           cp \

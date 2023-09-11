@@ -69,21 +69,21 @@ parts:
     build-packages:
       - g++
       - make
-      - qt5-default
+      - qt6-default
       - qttools5-dev-tools
-      - libqt5svg5-dev
+      - libqt6svg5-dev
     stage-packages:
       - dbus-x11
       - libgtk2.0-0
       - openssl
       - ca-certificates
       - qtwayland5
-      - libqt5dbus5
-      - libqt5network5
-      - libqt5core5a
-      - libqt5widgets5
-      - libqt5gui5
-      - libqt5svg5
+      - libqt6dbus5
+      - libqt6network5
+      - libqt6core5a
+      - libqt6widgets5
+      - libqt6gui5
+      - libqt6svg5
       - libxkbcommon0
       - ttf-ubuntu-font-family
       - dmz-cursor-theme
@@ -93,11 +93,11 @@ parts:
       - shared-mime-info
       - libgdk-pixbuf2.0-0
     prime:
-      # libquazip5-1 pulls in Qt5 from bionic as a dependency. We don't
-      # want it in our snap, however, because we get a newer Qt5 from the
+      # libquazip5-1 pulls in Qt6 from bionic as a dependency. We don't
+      # want it in our snap, however, because we get a newer Qt6 from the
       # kde-kf5 platform snap.
-      - "-usr/lib/x86_64-linux-gnu/libQt5*"
-      - "-usr/lib/x86_64-linux-gnu/libqt5*"
+      - "-usr/lib/x86_64-linux-gnu/libQt6*"
+      - "-usr/lib/x86_64-linux-gnu/libqt6*"
 slots:
   # Depending on in which environment we're running we either need
   # to use the system or session DBus so we also need to have one

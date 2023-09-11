@@ -3,9 +3,9 @@
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     cmake
-    qt5.full
-    qt5.qttools
-    qt5.qtsvg
+    qt6.full
+    qt6.qttools
+    qt6.qtsvg
   ];
-  buildInputs = [ pkgs.qt5.qtbase ];
+  buildInputs = [ pkgs.qt6.qtbase ];
 }
