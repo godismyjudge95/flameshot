@@ -39,6 +39,8 @@ jobs:
         run: |
           sudo apt-get -y -qq update
           sudo apt-get -y --no-install-recommends install \
+            libglx-dev \
+            libgl1-mesa-dev \
             cmake \
             extra-cmake-modules \
             build-essential \

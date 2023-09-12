@@ -23,7 +23,6 @@ jobs:
     runs-on: macos-12
 
     env:
-      PLATFORM: MAC_ARM64
       APP_NAME: flameshot
       DIR_BULD: build
       DIR_PKG: build/src

@@ -82,7 +82,7 @@ QList<QColor> HarmonyColorWheel::harmonyColors() const
 
 unsigned int HarmonyColorWheel::harmonyCount() const
 {
-    return 1 + p->ring_editors.size();
+    return static_cast<int>(1 + p->ring_editors.size());
 }
 
 void HarmonyColorWheel::clearHarmonies()
@@ -95,7 +95,7 @@ void HarmonyColorWheel::clearHarmonies()
 
 unsigned HarmonyColorWheel::addHarmony(double hue_diff, bool editable)
 {
-    auto count = p->ring_editors.size();
+    auto count = static_cast<int>(p->ring_editors.size());
     p->ring_editors.emplace_back(Private::normalize(hue_diff), editable, -1, -1);
     Q_EMIT harmonyChanged();
     update();
@@ -104,7 +104,7 @@ unsigned HarmonyColorWheel::addHarmony(double hue_diff, bool editable)
 
 unsigned HarmonyColorWheel::addSymmetricHarmony(unsigned relative_to)
 {
-    auto count = p->ring_editors.size();
+    auto count = static_cast<int>(p->ring_editors.size());
     if (relative_to >= count)
         throw std::out_of_range("incorrect call to addSymmetricHarmony: harmony number out of range");
     auto& relative = p->ring_editors[relative_to];
@@ -117,7 +117,7 @@ unsigned HarmonyColorWheel::addSymmetricHarmony(unsigned relative_to)
 
 unsigned HarmonyColorWheel::addOppositeHarmony(unsigned relative_to)
 {
-    auto count = p->ring_editors.size();
+    auto count = static_cast<int>(p->ring_editors.size());
     if (relative_to >= count)
         throw std::out_of_range("incorrect call to addOppositeHarmony: harmony number out of range");
     auto& relative = p->ring_editors[relative_to];

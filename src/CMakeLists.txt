@@ -66,7 +66,7 @@ endif()
 if (WIN32)
     set_property(TARGET flameshot PROPERTY WIN32_EXECUTABLE true)
     if (MSVC)
-        target_compile_options(flameshot PRIVATE /source-charset:utf-8)
+        target_compile_options(flameshot PRIVATE /utf-8)
     endif ()
 endif ()
 
