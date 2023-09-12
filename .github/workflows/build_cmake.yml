@@ -41,11 +41,14 @@ jobs:
           sudo apt-get -y --no-install-recommends install \
             libglx-dev \
             libgl1-mesa-dev \
+            libxkbcommon-dev \
+            libxkbfile-dev \
             cmake \
             extra-cmake-modules \
             build-essential \
             qt6-base-dev \
             qt6-base-dev-tools \
+            qt6-tools-dev \
             libqt6svg6-dev \
             libqt6dbus6 \
             libqt6network6 \
