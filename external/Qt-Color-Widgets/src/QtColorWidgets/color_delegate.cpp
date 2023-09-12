@@ -62,7 +62,7 @@ void color_widgets::ReadOnlyColorDelegate::paintItem(
 void color_widgets::ReadOnlyColorDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
                            const QModelIndex &index) const
 {
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
     {
         paintItem(painter, option, index, index.data().value<QColor>());
     }
@@ -74,7 +74,7 @@ void color_widgets::ReadOnlyColorDelegate::paint(QPainter *painter, const QStyle
 
 QSize color_widgets::ReadOnlyColorDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
         return size_hint;
     return QStyledItemDelegate::sizeHint(option, index);
 }
@@ -95,7 +95,7 @@ QWidget *color_widgets::ColorDelegate::createEditor(
     const QStyleOptionViewItem &option,
     const QModelIndex &index) const
 {
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
     {
         ColorDialog *editor = new ColorDialog(const_cast<QWidget*>(parent));
         connect(editor, &QDialog::accepted, this, &ColorDelegate::close_editor);
@@ -121,7 +121,7 @@ void color_widgets::ColorDelegate::close_editor()
 void color_widgets::ColorDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
 
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
     {
         ColorDialog *selector = qobject_cast<ColorDialog*>(editor);
         selector->setColor(qvariant_cast<QColor>(index.data()));
@@ -134,7 +134,7 @@ void color_widgets::ColorDelegate::setEditorData(QWidget *editor, const QModelIn
 void color_widgets::ColorDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
                                   const QModelIndex &index) const
 {
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
     {
         ColorDialog *selector = qobject_cast<ColorDialog *>(editor);
         model->setData(index, QVariant::fromValue(selector->color()));
@@ -147,7 +147,7 @@ void color_widgets::ColorDelegate::setModelData(QWidget *editor, QAbstractItemMo
 void color_widgets::ColorDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option,
                                          const QModelIndex &index) const
 {
-    if ( index.data().type() == QMetaType::QColor )
+    if ( index.data().typeId() == QMetaType::QColor )
     {
         return;
     }

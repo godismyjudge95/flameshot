@@ -22,14 +22,11 @@ TextConfig::TextConfig(QWidget* parent)
   , m_centerAlignButton(nullptr)
   , m_rightAlignButton(nullptr)
 {
-
-    QFontDatabase fontDB;
-
     connect(m_fontsCB,
             &QComboBox::currentTextChanged,
             this,
             &TextConfig::fontFamilyChanged);
-    m_fontsCB->addItems(fontDB.families());
+    m_fontsCB->addItems(QFontDatabase::families());
     setFontFamily(ConfigHandler().fontFamily());
 
     QString iconPrefix = ColorUtils::colorIsDark(palette().windowText().color())
