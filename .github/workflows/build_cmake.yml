@@ -47,7 +47,8 @@ jobs:
             extra-cmake-modules \
             build-essential \
             qt6-base-dev \
-            qt6-base-dev-tools \
+            qt6-tools-dev-tools \
+            qt6-svg-dev \
             qt6-tools-dev \
             libqt6svg6-dev \
             libqt6dbus6 \
