@@ -471,7 +471,9 @@ QVariant UserColors::representation(const QVariant& val)
 
 bool SaveFileExtension::check(const QVariant& val)
 {
-    if (!val.canConvert(QMetaType::QString) || val.toString().isEmpty()) {
+    if (!QMetaType::canConvert(QMetaType(val.type()),
+                               QMetaType(QMetaType::QString)) ||
+        val.toString().isEmpty()) {
         return false;
     }
 
