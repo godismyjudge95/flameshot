@@ -20,7 +20,7 @@ env:
 jobs:
   macos:
     name: macOS
-    runs-on: macos-latest-large
+    runs-on: macos-latest
 
     env:
       APP_NAME: flameshot
