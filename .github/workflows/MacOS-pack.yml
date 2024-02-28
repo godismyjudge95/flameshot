@@ -6,21 +6,21 @@ on:
       - master
       - feature/RND-680-macos-.dmg-package-build
     paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
+      - "README.md"
+      - "LICENSE"
 
   pull_request:
     paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
+      - "README.md"
+      - "LICENSE"
 
 env:
   PRODUCT: flameshot
 
 jobs:
-  catalina:
-    name: macOS Monterey 12
-    runs-on: macos-12
+  macos:
+    name: macOS
+    runs-on: macos-latest-large
 
     env:
       APP_NAME: flameshot
