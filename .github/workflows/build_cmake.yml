@@ -2,15 +2,15 @@ name: Building(CMake)
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
+      - "README.md"
+      - "LICENSE"
   pull_request:
-    branches: [ master ]
+    branches: [master]
     paths-ignore:
-      - 'README.md'
-      - 'LICENSE'
+      - "README.md"
+      - "LICENSE"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -37,6 +37,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
+          sudo add-apt-repository universe
           sudo apt-get -y -qq update
           sudo apt-get -y --no-install-recommends install \
             libglx-dev \
@@ -93,13 +94,14 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name: "Windows 2019 MSVC",
-            artifact: "Windows-MSVC.tar.xz",
-            os: windows-2019,
-            cc: "cl", cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-          }
+          - {
+              name: "Windows 2019 MSVC",
+              artifact: "Windows-MSVC.tar.xz",
+              os: windows-2019,
+              cc: "cl",
+              cxx: "cl",
+              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            }
 
     steps:
       - uses: actions/checkout@v2
@@ -115,8 +117,8 @@ jobs:
         uses: jurplel/install-qt-action@v2
         with:
           version: 6.5.2
-          target:  desktop
-          dir: '${{ github.workspace }}/build/'
+          target: desktop
+          dir: "${{ github.workspace }}/build/"
 
       - name: Configure
         working-directory: build
