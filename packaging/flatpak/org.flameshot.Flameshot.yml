@@ -30,5 +30,5 @@ modules:
       - -DUSE_WAYLAND_CLIPBOARD=1
     sources:
       - type: git
-        url: https://github.com/godismyjudge95/flameshot.git
+        url: https://github.com/info-dev/flameshot.git
         branch: master
